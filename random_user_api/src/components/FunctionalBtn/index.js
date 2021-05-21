@@ -1,14 +1,15 @@
 import React from "react";
 import "./style.css";
+import API from '../../utils/API'
 
-function SearchBtn(props) {
+function SortBtn(props) {
+
   return (
     <button
       onClick={props.onClick}
       className={`btn btn-${props.flavor}`}
-      placeholder={props.placeholder}
-    >Get Users! </button>
+    >{props.Heading}</button>
   );
 }
 
-export default SearchBtn;
+export default SortBtn;

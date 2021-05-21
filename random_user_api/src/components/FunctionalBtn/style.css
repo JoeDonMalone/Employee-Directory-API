@@ -8,9 +8,11 @@
   color: rgb(255, 255, 255);
   font-size: 24px;
   cursor: pointer;
-  font-family: FontAwesome;
+  /* font-family: FontAwesome; */
   outline: none;
 }
+
+
 
 /* .pass {
   left: 1%;

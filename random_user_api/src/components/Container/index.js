@@ -4,7 +4,7 @@ import './style.css'
 function Container(props) {
   return (
     <div 
-    className={"container"} 
+    className={props.className} 
     style={props.style}>{props.children}
     </div>
   );
