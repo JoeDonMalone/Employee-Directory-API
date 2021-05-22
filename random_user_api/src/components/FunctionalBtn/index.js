@@ -7,6 +7,7 @@ function SortBtn(props) {
   return (
     <button
       onClick={props.onClick}
+      style={props.style}
       className={`btn btn-${props.flavor}`}
     >{props.Heading}</button>
   );
