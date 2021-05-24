@@ -1,6 +1,7 @@
 import React, { Component, useState, useEffect, useRef } from "react";
 import Table from "../Table";
 import Container from "../Container";
+import TableContext from '../../utils/TableContext'
 import Input from "../InputField";
 
 import API from "../../utils/API";
@@ -20,24 +21,33 @@ function Wrapper() {
     return rows.filter(
       (employees) =>
         employees.name.first.toLowerCase().indexOf(searchInput.toLowerCase()) > -1 ||
-        employees.name.last.toLowerCase().indexOf(searchInput.toLowerCase()) > -1||
+        employees.name.last.toLowerCase().indexOf(searchInput.toLowerCase()) > -1 ||
         employees.email.toLowerCase().indexOf(searchInput.toLowerCase()) > -1)
+  }
+
+  const HandleInput = (e) => {
+    console.log(e)
+    return(setSearch(e.target.value));
+  }
+
+  const HandleSort = (column) => {
+    return (API.sortByName(column))
   }
 
   return (
     <>
-      <Container style={{ border: "solid 1px black" }}>
-        <input
-          onChange={(e) => {
-            setSearch(e.target.value);
-          }}
-          value={searchInput}
-        ></input>
-        <div>
-          <h1> Current Employees</h1>
-        </div>
-      </Container>
-      <Table props={search(employees)} onClick={API.sortByName}></Table>
+      <TableContext.Provider value={employees}>
+        <Container style={{ border: "solid 1px black" }}>
+          <input
+            onChange={HandleInput}
+            value = {searchInput}
+          ></input>
+          <div>
+            <h1> Current Employees</h1>
+          </div>
+        </Container>
+        <Table employees={search(employees)} OnSort={HandleSort}></Table>
+      </TableContext.Provider>
     </>
   );
 }

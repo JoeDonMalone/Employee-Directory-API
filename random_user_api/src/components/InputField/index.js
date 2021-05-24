@@ -1,15 +1,15 @@
 import React from "react";
 import Container from "../Container";
 
-function Input(props) {
+function Input({value, changeHandler}) {
 
   return (
     <Container style={{ margin: 15 }}>
       <div className="bd-example">
         <div className="input-group mb-3">
           <input
-            value={props.input}
-            onChange={props.SetSearchInput}
+            value={value}
+            onChange={() => {changeHandler(value)}}
             name="input"
             type="text"
             className="form-control"

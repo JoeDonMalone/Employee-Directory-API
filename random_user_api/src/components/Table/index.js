@@ -3,37 +3,35 @@ import Button from "../FunctionalBtn";
 import Moment from 'moment';
 import "./style.css";
 
-function Table({props}) {
-  const [employees, setEmployees] = useState([])
+function Table({employees, OnSort}) {
 
-  
 
   return (
     <div>
       <table className="table table-dark">
         <thead>
           <tr>
-            <th scope="col"><Button flavor = {'dark'} Heading= {"Photo"} style = {{textAlign: 'center'}} ></Button></th>
-            <th scope="col"><Button flavor = {'dark'} Heading= {"Name"}style = {{textAlign: 'center'}} ></Button></th>
-            <th scope="col"><Button flavor = {'dark'} Heading= {"Phone"}style = {{textAlign: 'center'}}></Button></th>
-            <th scope="col"><Button flavor = {'dark'} Heading= {"Email"}style = {{textAlign: 'center'}} ></Button></th>
-            <th scope="col"><Button flavor = {'dark'} Heading= { "DOB" }style = {{textAlign: 'center'}}></Button></th>
+            <th scope="col"><Button flavor = {'dark'} Heading= {"Photo"} style = {{textAlign: 'center'}}></Button></th>
+            <th scope="col"><Button flavor = {'dark'} Heading= {"Name"}style = {{textAlign: 'center'}} onClick = {() => OnSort('Name')}></Button></th>
+            <th scope="col"><Button flavor = {'dark'} Heading= {"Phone"}style = {{textAlign: 'center'}} onClick = {() => OnSort('Phone')}></Button></th>
+            <th scope="col"><Button flavor = {'dark'} Heading= {"Email"}style = {{textAlign: 'center'}} onClick = {() => OnSort('Email')}></Button></th>
+            <th scope="col"><Button flavor = {'dark'} Heading= { "DOB" }style = {{textAlign: 'center'}} onClick = {() => OnSort('DOB')}></Button></th>
           </tr>
         </thead>
         <tbody>
-          {props.map((props, index) => (
+          {employees.map((employees, index) => (
             <tr key={index}>
               <td>
                 <img
                   alt="thumbnail"
                   className="img-fluid"
-                  src={props.picture.thumbnail}
+                  src={employees.picture.thumbnail}
                 />
               </td>
-              <td>{`${props.name.first} ${props.name.last}`}</td>
-              <td>{props.phone}</td>
-              <td>{props.email}</td>
-              <td>{Moment(props.dob.date).format("MM/DD/YYYY")}</td>
+              <td>{`${employees.name.first} ${employees.name.last}`}</td>
+              <td>{employees.phone}</td>
+              <td>{employees.email}</td>
+              <td>{Moment(employees.dob.date).format("MM/DD/YYYY")}</td>
             </tr>
           ))}
         </tbody>
