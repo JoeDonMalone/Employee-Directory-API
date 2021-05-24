@@ -3,7 +3,7 @@ import Button from "../FunctionalBtn";
 import Moment from 'moment';
 import "./style.css";
 
-function Table({employees, OnSort}) {
+function Table({employees, OnSort, sortMethod}) {
 
 
   return (
@@ -12,10 +12,10 @@ function Table({employees, OnSort}) {
         <thead>
           <tr>
             <th scope="col"><Button flavor = {'dark'} Heading= {"Photo"} style = {{textAlign: 'center'}}></Button></th>
-            <th scope="col"><Button flavor = {'dark'} Heading= {"Name"}style = {{textAlign: 'center'}} onClick = {() => OnSort('Name')}></Button></th>
+            <th scope="col"><Button flavor = {'dark'} Heading= {"Name"}style = {{textAlign: 'center'}} onClick = {() => OnSort({sortMethod})}></Button></th>
             <th scope="col"><Button flavor = {'dark'} Heading= {"Phone"}style = {{textAlign: 'center'}} onClick = {() => OnSort('Phone')}></Button></th>
             <th scope="col"><Button flavor = {'dark'} Heading= {"Email"}style = {{textAlign: 'center'}} onClick = {() => OnSort('Email')}></Button></th>
-            <th scope="col"><Button flavor = {'dark'} Heading= { "DOB" }style = {{textAlign: 'center'}} onClick = {() => OnSort('DOB')}></Button></th>
+            <th scope="col"><Button flavor = {'dark'} Heading= { "DOB" }style = {{textAlign: 'center'}} onClick = {() => OnSort({sortMethod})}></Button></th>
           </tr>
         </thead>
         <tbody>
@@ -28,7 +28,7 @@ function Table({employees, OnSort}) {
                   src={employees.picture.thumbnail}
                 />
               </td>
-              <td>{`${employees.name.first} ${employees.name.last}`}</td>
+              <td>{`${employees.name.last}, ${employees.name.first}`}</td>
               <td>{employees.phone}</td>
               <td>{employees.email}</td>
               <td>{Moment(employees.dob.date).format("MM/DD/YYYY")}</td>
